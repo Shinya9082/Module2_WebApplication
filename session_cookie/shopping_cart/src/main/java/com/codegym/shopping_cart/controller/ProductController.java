@@ -50,6 +50,6 @@ public class ProductController {
     @GetMapping("/cart/{id}")
     public ModelAndView removeProduct(@ModelAttribute("cart") Cart cart,@PathVariable("id") Long id){
         cart.removeProduct(productService.findById(id));
-        return new ModelAndView("cart","list",cart.getCart());
+        return new ModelAndView("redirect:/cart");
     }
 }
