@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Module2FuramaApplication {
+public class FuramaBookingApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Module2FuramaApplication.class, args);
+        SpringApplication.run(FuramaBookingApplication.class, args);
     }
 
 }

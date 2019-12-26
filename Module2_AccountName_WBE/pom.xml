@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.codegym</groupId>
-    <artifactId>module2_furama</artifactId>
+    <artifactId>furama_booking</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>module2_furama</name>
+    <name>furama_booking</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
