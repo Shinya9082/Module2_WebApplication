@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Furama Resort</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .carousel-inner img {
+        width: 100%;
+        height: 100%;
+    }
+    #myBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color: lightblue;
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 4px;
+    }
+
+    #myBtn:hover {
+        background-color: #555;
+    }
+</style>
+<body>
+<header>
+    <nav class="navbar bg-dark navbar-dark">
+        <a class="navbar-brand" >Furama Resort</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Back to top-->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <!--Script-->
+    <script>
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</header>
+
+<!-- carousel-inner-->
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/img/banner01.jpg" alt="banner01" width="1280" height="653">
+        </div>
+        <div class="carousel-item">
+            <img src="/img/banner02.jpg" alt="banner01" width="1280" height="653">
+        </div>
+        <div class="carousel-item">
+            <img src="/img/banner03.jpg" alt="banner01" width="1280" height="653">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+<!---->
+<!---->
+<div class="jumbotron text-center">
+    <h1 style="color: dodgerblue">Welcome to Furama Resort</h1>
+    <p style="color: dodgerblue">Wish you enjoy your stay here</p>
+</div>
+<!---->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-3">
+            <form action="/" method="post">
+                <div class="form-group">
+                    <label for="sel2">Select list:</label>
+                    <select class="form-control" id="sel2" name="sellist">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+        <div class="col-xl-6">
+            <div class="row" >
+                <div class="card" style="width:150px" th:each="row:${services}">
+                    <div th:switch="${row.resortServiceType.id}">
+                        <img th:case="1" class="card-img-top" src="img/Two-storied-house-icon.png" alt="Card image">
+                        <img th:case="2" class="card-img-top" src="img/One-storied-house-icon.png" alt="Card image">
+                        <img th:case="3" class="card-img-top" src="https://image.flaticon.com/icons/png/512/1566/premium/1566938.png" alt="Card image">
+                    </div>
+                    <div class="card-body">
+                        <h4><p th:text="${row.resortServiceType.name}" class="card-title"></p></h4>
+                        <p th:text="${row.name +' '+row.status}" class="card-text"></p>
+                        <a th:href="@{/booking/{id}(id=${row.id})}" class="btn btn-primary">Booking</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            Col 3
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
