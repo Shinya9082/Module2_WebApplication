@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public interface CustomerService {
     Iterable<Customer> findAllByProvince(Province province);
-
     Iterable<Customer> findAll();
 
     Optional<Customer> findById(Long id);

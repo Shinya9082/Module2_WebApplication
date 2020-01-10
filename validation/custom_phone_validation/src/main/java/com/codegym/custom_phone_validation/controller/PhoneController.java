@@ -15,17 +15,17 @@ import javax.validation.Valid;
 public class PhoneController {
     @GetMapping("/")
     public String showForm(Model model){
-        model.addAttribute("phonemunber", new PhoneNumber());
+        model.addAttribute("phonenumber", new PhoneNumber());
         return "index";
     }
     @PostMapping("/")
-    public String checkValidation (@Valid @ModelAttribute("phonemunber")PhoneNumber phoneNumber, BindingResult bindingResult, Model model){
+    public String checkValidation (@Valid @ModelAttribute("phonenumber")PhoneNumber phoneNumber, BindingResult bindingResult, Model model){
         new PhoneNumber().validate(phoneNumber, bindingResult);
         if (bindingResult.hasFieldErrors()){
             return "index";
         }
         else {
-            model.addAttribute("phoneNumber", phoneNumber.getNumber());
+            model.addAttribute("phonenumber", phoneNumber.getNumber());
             return "result";
         }
     }
